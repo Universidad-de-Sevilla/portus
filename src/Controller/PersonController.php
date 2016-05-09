@@ -73,12 +73,8 @@ class PersonController
         /** @var Person $person */
         $person = $this->personRepository->find($id);
         if ($person) {
-            $items = $person->getItems();
-            $jobs = $app['repository.job']->findAll();
-            $response = $app['twig']->render('person/person_view.html.twig', array(
-                'person' => $person,
-                'items' => $items,
-                'jobs' => $jobs
+             $response = $app['twig']->render('person/person_view.html.twig', array(
+                'person' => $person
             ));
         } else {
             $response = $this->redirectOnInvalidId($app, $id);
@@ -106,7 +102,6 @@ class PersonController
      */
     public function saveAction(Request $request, Application $app)
     {
-
         $firstName = $request->get('firstName');
         $lastName = $request->get('lastName');
         if ($id = $request->get('id')) {
@@ -118,17 +113,6 @@ class PersonController
             $person->setEmail($email);
             $gender = $request->get('gender');
             $person->setGender($gender);
-//            $startDate = $request->get('startDate');
-//            $person->setStartDate($startDate);
-//            $endDate = $request->get('endDate');
-//            $person->setEndDate($endDate);
-            $birthLocality = $request->get('birthLocality');
-            $person->setBirthLocality($birthLocality);
-            $birthProvince = $request->get('birthProvince');
-            $person->setBirthProvince($birthProvince);
-            $job = $app['repository.job']->Find($request->get('jobId'));
-            $person->setJob($job);
-
         } else {
             $data = array(
                 'firstName' => $firstName,
@@ -138,10 +122,9 @@ class PersonController
             $person = new Person($data);
         }
         $this->personRepository->save($person);
-
         // TODO: Check for failure or success
-
         $redirect = $app['url_generator']->generate('person_view', array('id' => $id));
+
         return $app->redirect($redirect);
     }
 
@@ -151,6 +134,7 @@ class PersonController
      */
     public function addAction(Application $app)
     {
+
         return $app['twig']->render('person/person_add.html.twig');
     }
 
@@ -164,15 +148,12 @@ class PersonController
         /** @var Person $person */
         $person = $this->personRepository->find($id);
         if ($person) {
-            $items = $person->getItems();
-            $jobs = $app['repository.job']->findAll();
             $response = $app['twig']->render('person/person_edit.html.twig', array(
-                'person' => $person,
-                'items' => $items,
-                'jobs' => $jobs));
+                'person' => $person));
         } else {
             $response = $this->redirectOnInvalidId($app, $id);
         }
+
         return $response;
     }
 
@@ -231,7 +212,6 @@ class PersonController
             $imageString = $imageBase64Exploded[1];
             file_put_contents($filename, base64_decode($imageString));
             $redirect = $app['url_generator']->generate('person_edit', array('id' => $personId));
-
             $location = "index.php?page=person/person_editar&id=$personId";
         } else {
             $redirect = $app['url_generator']->generate('person_edit', array('id' => $personId));
@@ -239,9 +219,7 @@ class PersonController
             $location = "index.php?page=person/person_editar&id=$personId&mensaje=$message";
         }
         $response = $app->redirect($redirect);
+
         return $response;
-
-
     }
-
 }

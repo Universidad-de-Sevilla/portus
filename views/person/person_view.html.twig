@@ -37,10 +37,6 @@
                         <dt>{{ 'Email'|trans }}:</dt>
                         <dd>{{ person.email }}</dd>
 
-                        <dt>{{ 'Job'|trans }}:</dt>
-                        <dd>{% if person.job.description is defined %}{{ person.job.description }}{% else %}<span
-                                    class="text-muted">{{ 'Undefined'|trans }}</span>{% endif %}</dd>
-
                         <dt>{{ 'Start Date'|trans }}:</dt>
                         <dd>{{ person.startDate|date('d/m/Y') }}</dd>
                     </dl>
@@ -55,12 +51,6 @@
                     <dl class="dl-horizontal">
                         <dt>{{ 'Birth Date'|trans }}:</dt>
                         <dd>{{ person.birthDate|date('d/m/Y') }}</dd>
-
-                        <dt>{{ 'Locality'|trans }}:</dt>
-                        <dd>{{ person.birthProvince }}</dd>
-
-                        <dt>{{ 'Province'|trans }}:</dt>
-                        <dd>{{ person.birthProvince }}</dd>
                     </dl>
                 </div>
                 <div role="tabpanel" class="tab-pane col-lg-6" id="others" style="padding-top: 20px">

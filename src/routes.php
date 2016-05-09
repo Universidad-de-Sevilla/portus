@@ -22,8 +22,6 @@ $app->get('/', function () use ($app) {
 })->bind('homepage');
 
 
-// Silex provides $app, $request and $id
-
 $app->get('/novedades', 'No hay novedades')
     ->bind('news');
 
@@ -59,15 +57,13 @@ $app->get('/login', function (Request $request) use ($app) {
 $app->mount('/admin', include 'routes_admin.php');
 
 
-// PRUEBAS Y EJEMPLOS //
-
+// TESTS & SAMPLES //
 $app->get('/prueba', function () use ($app) {
     return print_r($app['orm.ems']);
-//    return print_r(md5('Apapurcio15.'));
 });
 
 
-// GESTIÓN DE ERRORES
+// ERROR MANAGEMENT
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;

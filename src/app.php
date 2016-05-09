@@ -39,7 +39,6 @@ $app["orm.em.options"] = array(
     )
 );
 
-
 // Authentication and Security
 $app['security.access_rules'] = array(
     array('^/admin', 'ROLE_ADMIN'),
@@ -63,7 +62,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), $app['security.fire
 
 // Register repositories as Silex services
 $app['repository.person'] = function ($app) {
-    return new PersonRepository($app['orm.em'], $app['orm.em']->getClassMetadata('US\Portos\Entity\Person'));
+    return new PersonRepository($app['orm.em'], $app['orm.em']->getClassMetadata('US\Portus\Entity\Person'));
 };
 
 // Register controllers as Silex services
@@ -95,7 +94,7 @@ $app->register(new TranslationServiceProvider(), array(
 $app['translator'] = $app->extend('translator', function ($translator, $app) {
     /** @var Symfony\Component\Translation\Translator  $translator */
     $translator->addLoader('yaml', new YamlFileLoader());
-    $translator->addResource('yaml', __DIR__ . '/locales/es.yml', 'es');
+    $translator->addResource('yaml', __DIR__ . '/../locales/es.yml', 'es');
     return $translator;
 });
 
