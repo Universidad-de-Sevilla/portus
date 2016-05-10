@@ -10,10 +10,10 @@ global $app;
 
 $app->before(function () {
     // redirect the user to the login screen if access to the Resource is protected
-    if (false) {
+    if (true) {
         return new RedirectResponse('/login');
     }
-    return;
+    return null;
 });
 
 // Homepage
@@ -66,7 +66,7 @@ $app->get('/prueba', function () use ($app) {
 // ERROR MANAGEMENT
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
-        return;
+        return null;
     }
 
     // 404.html, or 40x.html, or 4xx.html, or error.html
