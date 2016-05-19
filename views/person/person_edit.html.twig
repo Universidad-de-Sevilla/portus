@@ -4,7 +4,7 @@
 
 {% block content %}
     <form action="{{ path('person_save') }}" method="post" style="margin-top: 20px;">
-        <input type="hidden" description="id" value="{{ person.id }}">
+        <input type="hidden" name="id" value="{{ person.id }}">
 
         <div class="row" style="padding-top: 20px;">
             <div class="col-lg-8">
@@ -37,34 +37,34 @@
 
                         <div class="form-group">
                             <label for="firstName">{{ 'First Name'|trans }}</label>
-                            <input type="text" class="form-control" description="firstName"
+                            <input type="text" class="form-control" name="firstName"
                                    value="{{ person.firstName }}">
                         </div>
 
                         <div class="form-group">
                             <label for="lastName">{{ 'Last Name'|trans }}</label>
-                            <input type="text" class="form-control" description="lastName"
+                            <input type="text" class="form-control" name="lastName"
                                    value="{{ person.lastName }}">
                         </div>
 
                         <div class="form-group">
                             <label for="email">{{ 'Email'|trans }}</label>
-                            <input type="text" class="form-control" description="email" value="{{ person.email }}">
+                            <input type="text" class="form-control" name="email" value="{{ person.email }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="jobId">{{ 'Job'|trans }}</label>
-                            <select class="form-control" description="jobId">
-                                <option value="">{{ 'Select a job'|trans }}</option>
+                            <label for="genderId">{{ 'Gender'|trans }}</label>
+                            <select class="form-control" name="genderId">
+                                <option value="">{{ 'Select gender'|trans }}</option>
                                 {% for job in jobs %}
-                                    <option value="{{ job.id }}"{% if person.job.id is defined and person.job.id == job.id %} selected{% endif %}>{{ job.description }}</option>
+                                    <option value="{{ gender.id }}"{% if person.gender.id is defined and person.gender.id == gender.id %} selected{% endif %}>{{ gender.description }}</option>
                                 {% endfor %}
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="startDate">{{ 'Start Date'|trans }}</label>
-                            <input type="text" class="form-control" description="startDate"
+                            <input type="text" class="form-control" name="startDate"
                                    value="{{ person.startDate|date('d/m/Y') }}">
                         </div>
                     </div>
@@ -74,21 +74,9 @@
                     <div role="tabpanel" class="tab-pane col-lg-6" id="birth">
                         <div class="form-group">
                             <label for="birthDate">{{ 'Birth Date'|trans }}</label>
-                            <input type="text" class="form-control" description="birthDate"
+                            <input type="text" class="form-control" name="birthDate"
                                    value="{{ person.birthDate|date('d/m/Y') }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="birthLocality">{{ 'Locality'|trans }}</label>
-                            <input type="text" class="form-control" description="birthLocality"
-                                   value="{{ person.birthLocality }}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="birthProvince">{{ 'Province'|trans }}</label>
-                            <input type="text" class="form-control" description="birthProvince"
-                                   value="{{ person.birthProvince }}">
-                        </div>
+                        </div>+
                     </div>
                     <div role="tabpanel" class="tab-pane" id="others">
                         ...

@@ -10,7 +10,7 @@ global $app;
 
 $app->before(function () {
     // redirect the user to the login screen if access to the Resource is protected
-    if (true) {
+    if (false) {
         return new RedirectResponse('/login');
     }
     return null;

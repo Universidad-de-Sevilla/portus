@@ -4,7 +4,7 @@
  * Created 5/5/16 - 14:15
  */
 
-use App\Application;
+use Silex\Application;
 use Silex\WebTestCase;
 
 class ApplicationTest extends WebTestCase
@@ -22,5 +22,13 @@ class ApplicationTest extends WebTestCase
         $client = $this->createClient();
         $client->request('GET', '/give-me-a-404');
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
+    }
+
+    public function testInitialPage()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/');
+        $this->assertTrue($client->getResponse()->isOk());
+        $this->assertCount(1, $crawler->filter('h1:contains("Welcome")'));
     }
 }

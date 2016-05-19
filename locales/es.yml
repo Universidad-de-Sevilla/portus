@@ -39,6 +39,10 @@ Person: Person
 Province: Provincia
 Start Date: Fecha Alta
 
+#HELP
+
+Select gender: Seleccione sexo
+
 
 # TITLES & MENUS
 
@@ -65,6 +69,7 @@ Photo Edit: Editar Fotografía
 
 danger: ERROR
 No people defined yet: Todavía no hay personas
+Person data has been updated: Se han actualizado los datos de esta persona
 success: ÉXITO
 There is no record for this ID: No hay registro para esta ID
 Undefined: Indefinido

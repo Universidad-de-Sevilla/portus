@@ -1,24 +1,19 @@
 <?php
 /**
- * Portus Project
- * Entity/Person.php
+ * Portus Project - Entity/Person.php
+ *
+ * Developed by Juanan Ruiz <juanan@us.es>
+ * Created 10/5/16 - 21:57
  */
 
 namespace US\Portus\Entity;
+use Entity\Gender;
 
 /**
- * Class Person
- * Gestiona las personas que actuan como sujetos u objetos de la aplicación
- * 
  * @Entity 
  **/
 class Person
 {
-    /**
-     * @Column(type="datetime", nullable=TRUE)
-     * @var \DateTime
-     */
-    protected $birthDate;
     /**
      * @Id
      * @Column(type="integer")
@@ -26,6 +21,11 @@ class Person
      * @var int
      */
     private $id;
+    /**
+     * @Column(type="datetime", nullable=TRUE)
+     * @var \DateTime
+     */
+    protected $birthDate;
     /**
      * @Column(type="string")
      * @var string
@@ -37,13 +37,13 @@ class Person
      */
     private $lastName;
     /**
-     * @Column(type="string")
+     * @Column(type="string", unique=TRUE)
      * @var EmailAddress
      */
     private $email;
     /**
-     * @Column(type="string", nullable=TRUE)
-     * @var string
+     * @ManyToOne(targetEntity="Gender")
+     * @var Gender
      */
     private $gender;
     /**
@@ -57,16 +57,16 @@ class Person
      */
     private $endDate;
 
-
     /**
-     * @param array $datos
+     * @param array $data
      */
-    function __construct($datos)
+    function __construct($data)
     {
-        $this->firstName = $datos['firstName'];
-        $this->lastName = $datos['lastName'];
-        $this->email = $datos['email'];
-        $this->startDate = $datos['startDate'];
+        $this->email = $data['email'];
+        $this->firstName = $data['firstName'];
+        $this->gender = $data['gender'];
+        $this->lastName = $data['lastName'];
+        $this->startDate = $data['startDate'];
     }
 
     /**
@@ -110,7 +110,7 @@ class Person
     }
 
     /**
-     * @return string
+     * @return Gender gender
      */
     public function getGender()
     {
@@ -118,7 +118,7 @@ class Person
     }
 
     /**
-     * @param string $gender
+     * @param Gender $gender
      */
     public function setGender($gender)
     {

@@ -102,28 +102,44 @@ class PersonController
      */
     public function saveAction(Request $request, Application $app)
     {
-        $firstName = $request->get('firstName');
-        $lastName = $request->get('lastName');
-        if ($id = $request->get('id')) {
+        $data['firstName'] = $request->get('firstName');
+        $data['lastName'] = $request->get('lastName');
+        $data['email'] = $request->get('email');
+        $data['gender'] = $app['repository.gender']->find($request->get('genderId'));
+
+        if ($data['id'] = $request->get('id')) {
             /** @var Person $person */
-            $person = $this->personRepository->find($id);
-            $person->setFirstName($firstName);
-            $person->setLastName($lastName);
-            $email = $request->get('email');
-            $person->setEmail($email);
-            $gender = $request->get('gender');
-            $person->setGender($gender);
+            $person = $this->personRepository->find($data['id']);
+            $person->setFirstName($data['firstName']);
+            $person->setLastName($data['lastName']);
+            $person->setEmail($data['email']);
+            $person->setGender($data['gender']);
+            $message = "Person data has been updated"; // in case of success
+            $redirect = $app['url_generator']->generate('person_edit', $data); // in case of failure
         } else {
-            $data = array(
-                'firstName' => $firstName,
-                'lastName' => $lastName,
-                'startDate' => new \DateTime(),
-            );
+            $data['startDate'] = new \DateTime();
             $person = new Person($data);
+            $message = "Person has been created"; // in case of success
+            $redirect = $app['url_generator']->generate('person_add'); // in case of failure
         }
         $this->personRepository->save($person);
-        // TODO: Check for failure or success
-        $redirect = $app['url_generator']->generate('person_view', array('id' => $id));
+
+        // Valida los datos
+        // http://silex.sensiolabs.org/doc/providers/validator.html
+        /** @var array(ConstraintViolation) $errors */
+        $errors = $app['validator']->validate($person);
+
+        // Check for failure or success
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $message = $error->getPropertyPath() . ' ' . $error->getMessage();
+                $app['session']->getFlashBag()->add('danger', $message);
+            }
+        } else {
+            $this->personRepository->save($person);
+            $app['session']->getFlashBag()->add('success', $message);
+            $redirect = $app['url_generator']->generate('person_view', array('id' => $person->getId()));
+        }
 
         return $app->redirect($redirect);
     }
