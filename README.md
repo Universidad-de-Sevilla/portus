@@ -21,7 +21,7 @@ $ cp config/dev.sample.php config/dev.php
 $ cp config/prod.sample.php config/prod.php
 ```
 
-Create cache and logs directories
+Create cache and logs directories (and set necessary privileges)
 ```
 $ mkdir -p var/cache/profiler var/cache/twig var/logs var/private_uploads
 ```
