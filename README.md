@@ -14,6 +14,17 @@ Init composer from Terminal:
 ```
 $ composer install
 ```
+
+Copy config files
+```
+$ cp config/dev.sample.php config/dev.php
+$ cp config/prod.sample.php config/prod.php
+```
+
+Create cache and logs directories
+```
+$ mkdir -p var/cache/profiler var/cache/twig var/logs var/private_uploads
+```
  
 Create **portus** database (mysql):
 
@@ -28,6 +39,7 @@ Dump initials entities in database:
 ```
 $ bin/console orm:schema-tool:update --force --dump-sql
 ```
+
 
 
 Running
