@@ -7,7 +7,7 @@
         <div class="col-lg-6">
             <h2>{{ title }}</h2>
 
-            <form action="{{ path('person_save') }}" method="post"  enctype='multipart/form-data'>
+            <form action="{{ path('person_save') }}" method="post" enctype='multipart/form-data'>
                 <div class="form-group">
                     <label for="firstName">{{ 'First Name'|trans }}</label>
                     <input type="text" class="form-control" name="firstName">
@@ -19,6 +19,15 @@
                 <div class="form-group">
                     <label for="email">{{ 'Email'|trans }}</label>
                     <input type="text" class="form-control" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="gender">{{ 'Gender'|trans }}</label>
+                    <select name="genderId" class="form-control">
+                        <option value="">{{ 'Select option'|trans }}</option>
+                        {% for gender in genders %}
+                            <option value="{{ gender.id }}">{{ gender.description }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ 'Save'|trans }}</button>
                 <button type="reset" class="btn btn-danger">{{ 'Cancel'|trans }}</button>

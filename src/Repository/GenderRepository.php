@@ -1,26 +1,20 @@
 <?php
-/**
- * Portus Project
- * Repository/PersonRepository.php
- */
-
 namespace US\Portus\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use US\Portus\Entity\Person\Person;
-
+use US\Portus\Entity\Person\Gender;
 
 /**
  * Class PersonRepository
  */
-class PersonRepository extends EntityRepository
+class GenderRepository extends EntityRepository
 {
     /**
      * @param array $criteria
      * @param array $orderBy
-     * @param int|null $limit
+     * @param int|$limit
      * @param int|null $offset
-     * @return Person[]
+     * @return Gender[]
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
@@ -28,20 +22,19 @@ class PersonRepository extends EntityRepository
     }
 
     /**
-     * Guarda una persona en la base de datos
-     * @param Person $person
+     * @param Gender $gender
      */
-    public function save(Person $person)
+    public function save(Gender $gender)
     {
-        parent::getEntityManager()->persist($person);
+        parent::getEntityManager()->persist($gender);
         parent::getEntityManager()->flush();
     }
 
     /**
-     * @param int $id
+     * @param mixed $id
      * @param int|null $lockMode
      * @param int|null $lockVersion
-     * @return Person|null
+     * @return Gender|null
      */
     public function find($id, $lockMode = null, $lockVersion = null)
     {
@@ -50,22 +43,20 @@ class PersonRepository extends EntityRepository
 
 
     /**
-     * @param Person $person
+     * @param Gender $gender
      */
-    public function delete(Person $person)
+    public function delete(Gender $gender)
     {
-        parent::getEntityManager()->remove($person);
+        parent::getEntityManager()->remove($gender);
         parent::getEntityManager()->flush();
     }
 
     /**
-     * Cuenta el número de personas existente.
-     *
-     * @return integer Número total de personas.
+     * @return integer
      */
     public function count()
     {
-        $dql = 'SELECT COUNT(p.id) FROM US\Portus\Entity\Person\Person p';
+        $dql = 'SELECT COUNT(g.id) FROM US\Portus\Entity\Person\Gender g';
         $query = parent::getEntityManager()->createQuery($dql);
         return $query->getSingleScalarResult();
     }

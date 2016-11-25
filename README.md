@@ -46,7 +46,8 @@ Running
 -------
 
 To browse errors and debug run from your navigator with:
-`http://localhost/portus/web/index_dev.php` or `http://portus.dev/index_dev.php` 
+`http://localhost/portus/web/index_dev.php` or better `http://portus.dev/index_dev.php` 
+(you need to configura a vhost in apache)
 
 
 

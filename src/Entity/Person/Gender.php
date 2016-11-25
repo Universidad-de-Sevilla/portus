@@ -1,12 +1,6 @@
 <?php
-/**
- * Project portus - Entity/Gender.php
- * 
- * Developed by Juanan Ruiz <juanan@us.es>
- * Created 10/5/16 - 21:57
- */
 
-namespace Entity;
+namespace US\Portus\Entity\Person;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;

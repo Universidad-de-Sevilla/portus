@@ -6,8 +6,7 @@
  * Created 10/5/16 - 21:57
  */
 
-namespace US\Portus\Entity;
-use Entity\Gender;
+namespace US\Portus\Entity\Person;
 
 /**
  * @Entity 

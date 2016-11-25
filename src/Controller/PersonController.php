@@ -1,15 +1,13 @@
 <?php
 /**
- * Portus Project
- * PersonController.php
+ * Portus - PersonController.php
  * Developed by Juanan Ruiz
  * Created 9/5/16 - 16:55
- * Powered by PhpStorm.
  */
 
 namespace US\Portus\Controller;
 
-use US\Portus\Entity\Person;
+use US\Portus\Entity\Person\Person;
 use US\Portus\Repository\PersonRepository;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -35,26 +33,30 @@ class PersonController
     /**
      * function indexAction
      * @param Application $app
-     * @param $page
-     * @param $limit
+     * @param int $page
+     * @param int $limit
      * @return Response
      */
     public function indexAction(Application $app, $page, $limit)
     {
         $criteria = array();
-        $orderBy = array();
-        // Paginación
+        $orderBy = array('lastName' => 'ASC');
         $currentPage = $page;
+        $numPages = 0;
         $total = $this->personRepository->count();
-        $numPages = ceil($total / $limit);
-        if ($currentPage < 1) {
-            $currentPage = 1;
-        } else if ($currentPage > $numPages) {
-            $currentPage = $numPages;
+        if ($total > 0) {
+            $numPages = ceil($total / $limit);
+            if ($currentPage < 1) {
+                $currentPage = 1;
+            } else if ($currentPage > $numPages) {
+                $currentPage = $numPages;
+            }
+            $offset = ($currentPage - 1) * $limit;
+            $people = $this->personRepository->findBy($criteria, $orderBy, $limit, $offset);
+        } else {
+            $people = null;
         }
-        $offset = ($currentPage - 1) * $limit;
 
-        $people = $this->personRepository->findBy($criteria, $orderBy, $limit, $offset);
         return $app['twig']->render('person/person_index.html.twig', array(
             'people' => $people,
             'currentPage' => $currentPage,
@@ -73,7 +75,7 @@ class PersonController
         /** @var Person $person */
         $person = $this->personRepository->find($id);
         if ($person) {
-             $response = $app['twig']->render('person/person_view.html.twig', array(
+            $response = $app['twig']->render('person/person_view.html.twig', array(
                 'person' => $person
             ));
         } else {
@@ -150,13 +152,13 @@ class PersonController
      */
     public function addAction(Application $app)
     {
-
-        return $app['twig']->render('person/person_add.html.twig');
+        $genders = $app['repository.gender']->findAll();
+        return $app['twig']->render('person/person_add.html.twig', array('genders' => $genders));
     }
 
     /**
      * @param Application $app
-     * @param $id Person id
+     * @param int $id
      * @return Response/ResponseRedirect
      */
     public function editAction(Application $app, $id)
@@ -214,6 +216,7 @@ class PersonController
         return $response;
     }
 
+    // TODO: está función viene tal cual de otra app y hay que hacerle algunos ajuestes
     public function photoSaveAction(Request $request, Application $app)
     {
         $personId = $request->get('id_person');

@@ -9,6 +9,7 @@
 
 use US\Portus\Controller\PersonController;
 use US\Portus\Repository\PersonRepository;
+use US\Portus\Repository\GenderRepository;
 use Silex\Application;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\RoutingServiceProvider;
@@ -38,6 +39,7 @@ $app["orm.em.options"] = array(
         )
     )
 );
+$app["orm.proxies_dir"] = __DIR__ . "/../var/cache/doctrine/proxies";
 
 // Authentication and Security
 $app['security.access_rules'] = array(
@@ -62,7 +64,10 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), $app['security.fire
 
 // Register repositories as Silex services
 $app['repository.person'] = function ($app) {
-    return new PersonRepository($app['orm.em'], $app['orm.em']->getClassMetadata('US\Portus\Entity\Person'));
+    return new PersonRepository($app['orm.em'], $app['orm.em']->getClassMetadata('US\Portus\Entity\Person\Person'));
+};
+$app['repository.gender'] = function ($app) {
+    return new GenderRepository($app['orm.em'], $app['orm.em']->getClassMetadata('US\Portus\Entity\Person\Gender'));
 };
 
 // Register controllers as Silex services
@@ -91,12 +96,11 @@ $app->register(new TranslationServiceProvider(), array(
     'locale_fallbacks' => array('es'),
 ));
 
-$app['translator'] = $app->extend('translator', function ($translator, $app) {
+$app['translator'] = $app->extend('translator', function ($translator) {
     /** @var Symfony\Component\Translation\Translator  $translator */
     $translator->addLoader('yaml', new YamlFileLoader());
     $translator->addResource('yaml', __DIR__ . '/../locales/es.yml', 'es');
     return $translator;
 });
 
-// Finally
 return $app;
