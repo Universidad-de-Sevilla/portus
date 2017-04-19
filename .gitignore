@@ -1,8 +1,6 @@
 # Cache and logs
-/var/cache/*
-/var/logs/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
+var/
+logs/
 
 # Config
 /config/dev.php
@@ -14,12 +12,19 @@
 # Assets and user uploads
 /web/uploads/
 
+.htaccess
+web/assets/bootstrap/
+web/assets/font-awesome/
+web/assets/jquery/
+
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+tests/Controller/
 
 # Portus
-/var/private_uploads/*
+var/private_uploads/*
 
 #PhpStorm
 .idea
+
+#Others
+.DS_Store

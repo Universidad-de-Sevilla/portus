@@ -2,9 +2,6 @@
 
 use Silex\Provider\WebProfilerServiceProvider;
 
-//use Silex\Provider\DoctrineServiceProvider;
-//use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
-
 // include the prod configuration
 require __DIR__ . '/prod.php';
 

@@ -1,11 +1,4 @@
 <?php
-/**
- * Portus Project - app.php
- * Created 1/5/16 - 0:00
- *
- * $app is a dependency container based on Pimple
- * ¡Silex itself is a Pimple container!
- */
 
 use US\Portus\Controller\PersonController;
 use US\Portus\Repository\PersonRepository;
