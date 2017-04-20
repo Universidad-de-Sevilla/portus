@@ -24,6 +24,8 @@ $admin->get('/admin_login_check', function () {
     return 'Logged';
 });
 
+$app->get('personas', 'controller.person:indexAction')
+    ->bind('people_manage');
 $app->get('/persona/crear', 'controller.person:addAction')
     ->bind("person_add");
 $app->get('/persona/editar/{id}', 'controller.person:editAction')

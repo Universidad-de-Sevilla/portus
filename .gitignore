@@ -11,11 +11,12 @@ logs/
 
 # Assets and user uploads
 /web/uploads/
-
-.htaccess
 web/assets/bootstrap/
 web/assets/font-awesome/
 web/assets/jquery/
+web/assets/pace/
+web/assets/simple-line-icons/
+web/assets/tether/
 
 # PHPUnit
 tests/Controller/
@@ -28,3 +29,5 @@ var/private_uploads/*
 
 #Others
 .DS_Store
+.htaccess
+

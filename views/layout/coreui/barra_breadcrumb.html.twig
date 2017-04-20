@@ -1,0 +1,19 @@
+<ol class="breadcrumb">
+    {% if breadcrumb is defined %}
+        <li class="breadcrumb-item"><a href="{{ path('homepage') }}">{{ 'Inicio'|trans }}</a></li>
+        {% for item in breadcrumb %}
+            <li class="breadcrumb-item"><a href="{{ path(item.link) }}">{{ item.text|trans }}</a></li>
+        {% endfor %}
+        <li>{{ title }}</li>
+    {% else %}
+        <li class="breadcrumb-item">&nbsp;</li>
+    {% endif %}
+
+    <li class="breadcrumb-menu">
+        <div class="btn-group" role="group" aria-label="Grupo de botones">
+            <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
+            <a class="btn btn-secondary" href="#"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+            <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+        </div>
+    </li>
+</ol>

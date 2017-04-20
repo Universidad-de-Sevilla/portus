@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Galatar - Courses and learning material">
+    <meta name="author" content="Juanan Ruiz">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/assets/coreui_theme/img/favicon.png">
+    <title>CoreUI - Open Source Bootstrap Admin Template</title>
+    <!-- Icons -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="/assets/coreui_theme/css/style.css" rel="stylesheet">
+    <link href="/assets/app/app.css" rel="stylesheet">
+</head>
+
+<!-- BODY options, add following classes to body to change options
+		1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
+		2. 'sidebar-nav'		  - Navigation on the left
+			2.1. 'sidebar-off-canvas'	- Off-Canvas
+				2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
+				2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
+		3. 'fixed-nav'			  - Fixed navigation
+		4. 'navbar-fixed'		  - Fixed navbar
+		5. 'footer-fixed'		  - Fixed navbar
+	-->
+
+<body class="navbar-fixed sidebar-nav fixed-nav">
+{% block modal %}
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Ventana Modal
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
+                        <span aria-hidden="true">&times;</span>
+                    </button></h5>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<header class="navbar">
+    <div class="container-fluid">
+        {% block menu_superior %}
+            {% include "layout/coreui/menu_superior.html.twig" %}
+        {% endblock %}
+    </div>
+</header>
+
+{% block menu_lateral_principal %}
+    {% include "layout/coreui/menu_lateral_principal.html.twig" %}
+{% endblock %}
+
+<!-- Main content -->
+<main class="main">
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</main>
+
+{% block footer %}
+    {% include "layout/coreui/footer.html.twig" %}
+{% endblock %}
+
+{% block js %}
+    <script src="/assets/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/tether/dist/js/tether.min.js"></script>
+    <script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/assets/pace/pace.min.js"></script>
+    <script src="/assets/coreui_theme/js/app.js"></script>
+    <script src="/assets/app/app.js"></script>
+{% endblock %}
+
+</body>
+</html>
