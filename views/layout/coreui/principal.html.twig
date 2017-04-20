@@ -19,17 +19,22 @@
 </head>
 
 <!-- BODY options, add following classes to body to change options
-		1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
-		2. 'sidebar-nav'		  - Navigation on the left
-			2.1. 'sidebar-off-canvas'	- Off-Canvas
-				2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
-				2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
-		3. 'fixed-nav'			  - Fixed navigation
-		4. 'navbar-fixed'		  - Fixed navbar
-		5. 'footer-fixed'		  - Fixed navbar
-	-->
+// Header options
+1. '.header-fixed'					- Fixed Header
+// Sidebar options
+1. '.sidebar-fixed'					- Fixed Sidebar
+2. '.sidebar-hidden'				- Hidden Sidebar
+3. '.sidebar-off-canvas'		- Off Canvas Sidebar
+4. '.sidebar-compact'				- Compact Sidebar Navigation (Only icons)
+// Aside options
+1. '.aside-menu-fixed'			- Fixed Aside Menu
+2. '.aside-menu-hidden'			- Hidden Aside Menu
+3. '.aside-menu-off-canvas'	- Off Canvas Aside Menu
+// Footer options
+1. '.footer-fixed'						- Fixed footer
+-->
 
-<body class="navbar-fixed sidebar-nav fixed-nav">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 {% block modal %}
     <!-- Modal -->
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -37,9 +42,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalLabel">Ventana Modal
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
-                        <span aria-hidden="true">&times;</span>
-                    </button></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cancelar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </h5>
                 </div>
                 <div class="modal-body"></div>
                 <div class="modal-footer">
@@ -51,27 +57,26 @@
     </div>
 {% endblock %}
 
-<header class="navbar">
-    <div class="container-fluid">
-        {% block menu_superior %}
-            {% include "layout/coreui/menu_superior.html.twig" %}
-        {% endblock %}
-    </div>
+<header class="app-header navbar">
+    {% block menu_superior %}
+        {% include "layout/coreui/menu_superior.html.twig" %}
+    {% endblock %}
 </header>
 
-{% block menu_lateral_principal %}
-    {% include "layout/coreui/menu_lateral_principal.html.twig" %}
-{% endblock %}
+<div class="app-body">
+    {% block menu_lateral_principal %}
+        {% include "layout/coreui/menu_lateral_principal.html.twig" %}
+    {% endblock %}
 
-<!-- Main content -->
-<main class="main">
-    <div class="container-fluid">
-        <div class="animated fadeIn">
-            {% block content %}{% endblock %}
+    <!-- Main content -->
+    <main class="main">
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                {% block content %}{% endblock %}
+            </div>
         </div>
-    </div>
-</main>
-
+    </main>
+</div><!-- .app-body>
 {% block footer %}
     {% include "layout/coreui/footer.html.twig" %}
 {% endblock %}

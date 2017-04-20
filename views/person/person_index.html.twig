@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "layout/coreui/principal.html.twig" %}
 {% set active = 'people' %}
 {% set title = 'People List'|trans %}
 
@@ -35,6 +35,6 @@
         </tbody>
     </table>
 
-    {% include "pagination.html.twig" %}
+    {% include "commons/pagination.html.twig" %}
 
 {% endblock %}
