@@ -46,12 +46,24 @@ class Person
      */
     private $gender;
 
+
+    /**
+     * @var string
+     * @Column(type="string")
+     */
+    private $officePhoneNumber;
+
+    /**
+     * @var string
+     * @Column(type="string")
+     */
+    private $personalPhoneNumber;
+
     /**
      * @Column(type="datetime")
      * @var \DateTime
      */
     private $startDate;
-
 
     /**
      * @param array $data
@@ -71,70 +83,6 @@ class Person
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
-     * @return Gender gender
-     */
-    public function getGender()
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param Gender $gender
-     */
-    public function setGender($gender)
-    {
-        $this->gender = $gender;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getStartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
-     * @param \DateTime $startDate
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
     }
 
     /**
@@ -167,6 +115,102 @@ class Person
     public function setEmail($email)
     {
         $this->email = new EmailAddress($email);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return Gender gender
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param Gender $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOfficePhoneNumber()
+    {
+        return $this->officePhoneNumber;
+    }
+
+    /**
+     * @param string $officePhoneNumber
+     */
+    public function setOfficePhoneNumber($officePhoneNumber)
+    {
+        $this->officePhoneNumber = $officePhoneNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPersonalPhoneNumber()
+    {
+        return $this->personalPhoneNumber;
+    }
+
+    /**
+     * @param string $personalPhoneNumber
+     */
+    public function setPersonalPhoneNumber($personalPhoneNumber)
+    {
+        $this->personalPhoneNumber = $personalPhoneNumber;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTime $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
     }
 
 }

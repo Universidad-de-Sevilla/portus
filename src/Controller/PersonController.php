@@ -163,11 +163,12 @@ class PersonController
      */
     public function editAction(Application $app, $id)
     {
+        $genders = $app['repository.gender']->findAll();
         /** @var Person $person */
         $person = $this->personRepository->find($id);
         if ($person) {
-            $response = $app['twig']->render('person/person_edit.html.twig', array(
-                'person' => $person));
+            $response = $app['twig']->render('person/persona_editar.html.twig', array(
+                'person' => $person, 'genders' => $genders));
         } else {
             $response = $this->redirectOnInvalidId($app, $id);
         }

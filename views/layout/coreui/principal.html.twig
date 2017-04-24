@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Galatar - Courses and learning material">
+    <meta name="description" content="University of Seville Bootstrap Template">
     <meta name="author" content="Juanan Ruiz">
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/assets/coreui_theme/img/favicon.png">
-    <title>CoreUI - Open Source Bootstrap Admin Template</title>
-    <!-- Icons -->
-    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/assets/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-    <!-- Main styles for this application -->
-    <link href="/assets/coreui_theme/css/style.css" rel="stylesheet">
-    <link href="/assets/app/app.css" rel="stylesheet">
+    <title>Portus - University of Seville Bootstrap Template</title>
+    {% block css %}
+        <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/assets/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+        <link href="/assets/coreui_theme/css/style.css" rel="stylesheet">
+        <link href="/assets/app/app.css" rel="stylesheet">
+    {% endblock %}
 </head>
 
 <!-- BODY options, add following classes to body to change options
@@ -67,8 +66,6 @@
     {% block menu_lateral_principal %}
         {% include "layout/coreui/menu_lateral_principal.html.twig" %}
     {% endblock %}
-
-    <!-- Main content -->
     <main class="main">
         <div class="container-fluid">
             <div class="animated fadeIn">
@@ -76,7 +73,7 @@
             </div>
         </div>
     </main>
-</div><!-- .app-body>
+</div><!-- .app-body -->
 {% block footer %}
     {% include "layout/coreui/footer.html.twig" %}
 {% endblock %}

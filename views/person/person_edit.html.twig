@@ -1,4 +1,4 @@
-{% extends "layout.html.twig" %}
+{% extends "layout/coreui/principal.html.twig" %}
 {% set active = 'people' %}
 {% set title = 'Person Edit'|trans ~ ': ' ~ person.firstName ~ ' '  ~ person.lastName %}
 
@@ -56,7 +56,7 @@
                             <label for="genderId">{{ 'Gender'|trans }}</label>
                             <select class="form-control" name="genderId">
                                 <option value="">{{ 'Select gender'|trans }}</option>
-                                {% for job in jobs %}
+                                {% for gender in genders %}
                                     <option value="{{ gender.id }}"{% if person.gender.id is defined and person.gender.id == gender.id %} selected{% endif %}>{{ gender.description }}</option>
                                 {% endfor %}
                             </select>
@@ -86,7 +86,7 @@
             </div>
             <div class="col-lg-3">
                 <img src="/private_upload/photo_booth/{{ person.id }}.jpg" width="200"><br>
-                <a href="{{ path('person_photo_edit', {'id': person.id}) }}">{{ 'Edit user photo'|trans }}</a>
+                {#<a href="{{ path('person_photo_edit', {'id': person.id}) }}">{{ 'Edit user photo'|trans }}</a>#}
             </div>
         </div>
 

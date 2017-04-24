@@ -1,6 +1,7 @@
 <?php
 
 namespace US\Portus\Entity\Issue;
+use US\Portus\Entity\Commons\File;
 use US\Portus\Entity\Person\Person;
 
 /**
@@ -18,7 +19,7 @@ class Issue
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="\US\Humanos\Entity\Person\Person", inversedBy="issues")
+     * @ManyToOne(targetEntity="\US\Portus\Entity\Person\Person", inversedBy="issues")
      * @var Person
      */
     private $author;
@@ -33,6 +34,12 @@ class Issue
      * @var \DateTime
      */
     private $endDate;
+
+    /**
+     * @OneToMany(targetEntity="\US\Portus\Entity\Commons\File", mappedBy="container")
+     * @var File[]
+     */
+    private $files;
 
     /**
      * @Column(type="datetime")
@@ -113,6 +120,22 @@ class Issue
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
+    }
+
+    /**
+     * @return File[]
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param File $file
+     */
+    public function addFile($file)
+    {
+        $this->files[] = $file;
     }
 
     /**
