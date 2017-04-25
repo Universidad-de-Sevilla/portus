@@ -127,6 +127,10 @@ class Issue
      */
     public function getFiles()
     {
+
+        // $file = new File();
+        // $this->files = $file->find("container_type='" . get_class($this) . "' AND container_id=$this->id");
+
         return $this->files;
     }
 
@@ -135,6 +139,8 @@ class Issue
      */
     public function addFile($file)
     {
+        //$file->container_type = get_class($this);
+        //$file->container_id = $this->id;
         $this->files[] = $file;
     }
 
